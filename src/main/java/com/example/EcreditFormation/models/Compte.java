@@ -15,7 +15,9 @@ public class Compte {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long numcompte;
 	private long id;
+	private long numcompte;
 	private Date dateOuverture;
+	private Devise devise;
+	
 }

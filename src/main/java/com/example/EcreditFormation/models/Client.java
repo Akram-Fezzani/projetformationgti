@@ -1,5 +1,7 @@
 package com.example.EcreditFormation.models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,4 +18,9 @@ public class Client {
 	private long id;
 	private long cin;
 	private String nom;
+	private String prenom;
+
+	private Date dateNs;
+	private SituationFamiliale situationFamiliale;
+
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.EcreditFormation.Repository.ClientRepository;
 import com.example.EcreditFormation.models.Client;
+import com.example.EcreditFormation.repository.ClientRepository;
 import com.example.EcreditFormation.serviceInterface.IClientService;
 
 import lombok.extern.slf4j.Slf4j;

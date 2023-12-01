@@ -1,4 +1,4 @@
-package com.example.EcreditFormation.Repository;
+package com.example.EcreditFormation.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
