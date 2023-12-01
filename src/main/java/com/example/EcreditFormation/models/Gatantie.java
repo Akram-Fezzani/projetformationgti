@@ -19,5 +19,5 @@ public class Gatantie {
 	private long id;
 	private Nature nature;
 	private TypeGarantie type;
-	private String devise;
+	private Devise devise;
 }
