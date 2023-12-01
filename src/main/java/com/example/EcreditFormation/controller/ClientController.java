@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.EcreditFormation.models.Client;
 import com.example.EcreditFormation.serviceInterface.IClientService;
 
-
+import io.swagger.annotations.ApiOperation;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,5 +60,16 @@ public class ClientController {
     public void deleteUserById(@PathVariable Long clientID) {
     	clientService.deleteClientById(clientID);
     
+    }
+    
+
+    
+    @ApiOperation(value = "retrieveClient")
+    @GetMapping("/{id}")
+    public ResponseEntity<Client> getClientById(@PathVariable Long id) {
+        Optional<Client> client = clientService.getClientById(id);
+
+        return client.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
