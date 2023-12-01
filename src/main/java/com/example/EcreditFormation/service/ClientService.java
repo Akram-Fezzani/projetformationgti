@@ -52,10 +52,7 @@ public class ClientService implements IClientService {
 		
 	}
 	
-	@Override
-	public Client retrieveClient(Long clientID){
-		return clientRepository.findById(clientID).get();
-	}
+
 	@Override
 	   public Optional<Client> getClientById(Long id) {
 	        return clientRepository.findById(id);

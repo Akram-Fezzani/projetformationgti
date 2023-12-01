@@ -17,11 +17,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/client")
@@ -33,9 +30,9 @@ public class ClientController {
 	IClientService clientService;
 	
 	
-    @PostMapping("/post")
+    @PostMapping("/postClient")
 	@ResponseBody
-	public Client add(@RequestBody Client client) {
+	public Client addClient(@RequestBody Client client) {
 	        return clientService.addClient(client);
 	    }
     
@@ -45,19 +42,19 @@ public class ClientController {
     
 	@PostMapping("updateClient/{clientID}")
 	@ResponseBody
-	Client updateUser(@RequestBody Client client,@PathVariable Long clientID){
+	Client updateClient(@RequestBody Client client,@PathVariable Long clientID){
 		return clientService.updateClient(client, clientID);
 	}
     
     @GetMapping("/getClient")
     @ResponseBody
-    public List<Client> findAll() {
+    public List<Client> findAllClients() {
         return clientService.findAll();
     }
     
 
     @DeleteMapping("/delete/{clientID}")
-    public void deleteUserById(@PathVariable Long clientID) {
+    public void deleteClientById(@PathVariable Long clientID) {
     	clientService.deleteClientById(clientID);
     
     }
