@@ -1,7 +1,9 @@
 package com.example.EcreditFormation.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +24,12 @@ public class Credit {
 	private Date entreeRelation;
 	private String par;
 	private String observation;
-	private TypeCredit type;
-	private Unite unite;
+	private Long type;
+	private Long unite;
+	private Long compteId;
+	private boolean status;
+	//@ElementCollection
+	//private List<Long>pieceJointeIds;
+	//@ElementCollection
+	//private List<Long>garantieIds;
 }

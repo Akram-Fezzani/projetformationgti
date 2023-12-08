@@ -1,7 +1,9 @@
 package com.example.EcreditFormation.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +20,9 @@ public class Compte {
 	private long id;
 	private long numcompte;
 	private Date dateOuverture;
-	private Devise devise;
-	
+	private Long devise;
+	private Long clientId;
+	//@ElementCollection
+	//private List<Long>creditIds;
+
 }

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.EcreditFormation.dtos.AjoutDemandeDto;
+import com.example.EcreditFormation.models.Client;
 import com.example.EcreditFormation.models.Compte;
 import com.example.EcreditFormation.models.Credit;
 import com.example.EcreditFormation.serviceInterface.ICompteService;
@@ -31,11 +33,11 @@ public class CreditController {
 	ICreditService creditService;
 	
 	
-    @PostMapping("/postCredit")
+   /* @PostMapping("/postCredit")
 	@ResponseBody
 	public Credit addCredit(@RequestBody Credit credit) {
 	        return creditService.addCredit(credit);
-	    }
+	    }*/
     
 	@PostMapping("updateCredit/{creditID}")
 	@ResponseBody
@@ -65,6 +67,19 @@ public class CreditController {
 
         return compte.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+    
+    
+    @PostMapping("/ajouter")
+   	@ResponseBody
+   	public Credit ajouterDemandeParDto(@RequestBody AjoutDemandeDto credit) {
+   	        return creditService.addDemandeCredit(credit);
+   	    }
+    
+    @GetMapping("/getCredits")
+    @ResponseBody
+    public List<Client> findAllCreditsByDto() {
+        return creditService.getDemandeCredit();
     }
 	
 }

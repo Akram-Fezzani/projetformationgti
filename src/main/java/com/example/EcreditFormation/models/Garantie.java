@@ -11,13 +11,15 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Gatantie {
+public class Garantie {
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private Nature nature;
-	private TypeGarantie type;
-	private Devise devise;
+	private Long nature;
+	private Long type;
+	private Long devise;
+	private float valeur;
+	private Long creditId;
 }
