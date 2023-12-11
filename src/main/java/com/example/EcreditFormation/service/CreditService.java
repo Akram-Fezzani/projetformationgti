@@ -98,7 +98,7 @@ public class CreditService implements ICreditService {
 		Compte compte = modelMapper.map(ajoutDemandeDto.getCompteDto(), Compte.class);
 		Garantie garantie = modelMapper.map(ajoutDemandeDto.getGarantieDto(), Garantie.class);
 		PieceJointe pieceJointe = modelMapper.map(ajoutDemandeDto.getPieceJointeDto(),PieceJointe.class);
-		
+		CreditDto dto =new CreditDto();
 		//setting the client id in the compte
 		compte.setClientId(client.getId());
 		
@@ -121,45 +121,63 @@ public class CreditService implements ICreditService {
 	
 	@Transactional
 	@Override
-	public List<Client>  getDemandeCredit() {
+	public CreditDto  getDemandeCredit() {
 		
-		//AjoutDemandeDto demande =new AjoutDemandeDto();
-	//	AjoutDemandeMapper mapper = new AjoutDemandeMapper();
-		//List<AjoutDemandeDto> list = new ArrayList<AjoutDemandeDto>();
+		AjoutDemandeDto demande =new AjoutDemandeDto();
+		AjoutDemandeMapper mapper = new AjoutDemandeMapper();
+		List<AjoutDemandeDto> list = new ArrayList<AjoutDemandeDto>();
 		List<Credit> credits= creditRepository.findByStatus(true);
-		List<Client> comptes =new ArrayList<Client>();
+		List<PieceJointe> comptes =new ArrayList<>();
 
 		for(Credit credit : credits) {
 		Compte compte = compteRepository.findById(credit.getCompteId()).orElse(null);
-		Client client = clientRepository.findById(compteRepository.findById(credit.getCompteId()).orElse(null).getClientId()).orElse(null);
-		//List<Garantie> garantie = garantieRepository.findByCreditId(credit.getId());
-	//	List<PieceJointe> pieceJointe =pieceJointeRepository.findByCreditId(credit.getId());
+		Client client = clientRepository.findById(compte.getClientId()).orElse(null);
+		List<Garantie> garanties = garantieRepository.findByCreditId(credit.getId());
+		List<PieceJointe> pieceJointes =pieceJointeRepository.findByCreditId(credit.getId());
 
-		// modelMapper.map(credit, CreditDto.class);
+		 modelMapper.map(credit, CreditDto.class);
 		// modelMapper.map(compte, CompteDto.class);
-		// modelMapper.map(client, ClientDto.class);
-		// modelMapper.map(garantie, GarantieDto.class);
-		// modelMapper.map(pieceJointe, PieceJointeDto.class);
-		// CreditDto creditDto = mapper.convertCreditToDto(credit);
-		// CompteDto compteDto = mapper.convertCompteToDto(compte);
+		 /*modelMapper.map(client, ClientDto.class);
+		for(Garantie garantie : garanties) {
+
+		 modelMapper.map(garantie, GarantieDto.class);
+		 GarantieDto garantieDto = mapper.convertGarantieToDto(garantie);
+
+		 }
+		for(PieceJointe pieceJointe : pieceJointes) {
+
+		 modelMapper.map(pieceJointe, PieceJointeDto.class);
+		}
+		 CreditDto creditDto = mapper.convertCreditToDto(credit);
+		 CompteDto compteDto = mapper.convertCompteToDto(compte);
 		 
-		 //demande.setCreditDto(creditDto);
-		// demande.setCompteDto(compteDto);
+		 demande.setCreditDto(creditDto);
+		 demande.setCompteDto(compteDto);*/
+		        // Ensure that this.modelMapper is not null
+		        if (this.modelMapper == null) {
+		            // Handle the situation, throw an exception, or log an error
+		            throw new IllegalStateException("ModelMapper is not initialized");
+		        }else {
+		 
+		  dto = modelMapper.map(credit, CreditDto.class);
+
 		// ClientDto clientDto = mapper.convertClientToDto(client);
-		 //GarantieDto garantieDto = mapper.convertGarantieToDto(garantie);
-		 //PieceJointeDto pieceJointe = mapper.convertPieceJointeToDto(pieceJointe);
+		// PieceJointeDto pieceJointe = mapper.convertPieceJointeToDto(pieceJointe);
 
 		/*modelMapper.map(demande.setClientDto(client));
 		Credit credit = modelMapper.map(ajoutDemandeDto.getCreditDto(), Credit.class);
 		Compte compte = modelMapper.map(ajoutDemandeDto.getCompteDto(), Compte.class);
 		Garantie garantie = modelMapper.map(ajoutDemandeDto.getGarantieDto(), Garantie.class);
 		PieceJointe pieceJointe = modelMapper.map(ajoutDemandeDto.getPieceJointeDto(),PieceJointe.class);*/
-		if (compte !=null) {
-		comptes.add(client);
-			}
+		//for(Garantie garantie : garanties) {
+
+		//list.add(demande);
 		}
+				return dto;
+
 		
-		return comptes;
 	}
-	
+	}
 }
+	
+

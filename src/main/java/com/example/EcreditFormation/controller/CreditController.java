@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EcreditFormation.dtos.AjoutDemandeDto;
-import com.example.EcreditFormation.models.Client;
-import com.example.EcreditFormation.models.Compte;
+import com.example.EcreditFormation.dtos.CreditDto;
 import com.example.EcreditFormation.models.Credit;
-import com.example.EcreditFormation.serviceInterface.ICompteService;
 import com.example.EcreditFormation.serviceInterface.ICreditService;
 
 import io.swagger.annotations.ApiOperation;
@@ -78,7 +76,7 @@ public class CreditController {
     
     @GetMapping("/getCredits")
     @ResponseBody
-    public List<Client> findAllCreditsByDto() {
+    public CreditDto findAllCreditsByDto() {
         return creditService.getDemandeCredit();
     }
 	

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.EcreditFormation.models.Garantie;
 import com.example.EcreditFormation.models.PieceJointe;
 import com.example.EcreditFormation.serviceInterface.IPieceJointeService;
 import java.nio.file.Files;
@@ -57,15 +58,21 @@ public class PieceJointeController {
     
 
 	
-	@PostMapping("updatePieceJointe/{pieceJointeID7}")
+	@PostMapping("updatePieceJointe/{pieceJointeID}")
 	@ResponseBody
 	PieceJointe updatePieceJointe(@RequestBody PieceJointe pieceJointe,@PathVariable Long pieceJointeID){
 		return pieceJointeService.updatePieceJointe(pieceJointe, pieceJointeID);
 	}
+	
+	/*@PostMapping("updateGarantie/{garantieID}")
+	@ResponseBody
+	Garantie updateGarantie(@RequestBody Garantie pieceJointe,@PathVariable Long pieceJointeID){
+		return pieceJointeService.updatePieceJointe(pieceJointe, pieceJointeID);
+	}*/
     
     @GetMapping("/getPieceJointes")
     @ResponseBody
-    public List<PieceJointe> findAllGaranties() {
+    public List<PieceJointe> findAllPieceJointes() {
         return pieceJointeService.findAll();
     }
     
