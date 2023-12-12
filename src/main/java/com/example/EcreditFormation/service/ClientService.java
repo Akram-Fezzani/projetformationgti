@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.EcreditFormation.models.Client;
+import com.example.EcreditFormation.models.Compte;
 import com.example.EcreditFormation.repository.ClientRepository;
+import com.example.EcreditFormation.repository.CompteRepository;
 import com.example.EcreditFormation.serviceInterface.IClientService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +22,8 @@ public class ClientService implements IClientService {
 	
 	@Autowired
 	ClientRepository clientRepository;
-	
+	@Autowired
+	CompteRepository compteRepository;
 	
 	
 	//afficher la liste des users
@@ -57,4 +60,18 @@ public class ClientService implements IClientService {
 	   public Optional<Client> getClientById(Long id) {
 	        return clientRepository.findById(id);
 	    }
+	
+	
+	@Override
+	public Optional<Client> getClientByCin(Long cin){
+        return clientRepository.findByCin(cin);
+    }
+	
+	@Override
+	   public List<Compte> getCompteByClientCin(Long cin) {
+		Client client= clientRepository.findByCin(cin).orElse(null);
+		List <Compte> c = compteRepository.findByClientId(client.getId());
+		return c;
+	}
+
 }

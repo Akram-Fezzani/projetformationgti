@@ -15,6 +15,7 @@ import com.example.EcreditFormation.dtos.ClientDto;
 import com.example.EcreditFormation.dtos.CompteDto;
 import com.example.EcreditFormation.dtos.CreditDto;
 import com.example.EcreditFormation.dtos.GarantieDto;
+import com.example.EcreditFormation.dtos.GetDemandeDto;
 import com.example.EcreditFormation.dtos.PieceJointeDto;
 import com.example.EcreditFormation.modelMapper.AjoutDemandeMapper;
 import com.example.EcreditFormation.models.Client;
@@ -121,62 +122,37 @@ public class CreditService implements ICreditService {
 	
 	@Transactional
 	@Override
-	public CreditDto  getDemandeCredit() {
+	public List<GetDemandeDto>  getDemandeCredit() {
 		
-		AjoutDemandeDto demande =new AjoutDemandeDto();
+		GetDemandeDto demande =new GetDemandeDto();
 		AjoutDemandeMapper mapper = new AjoutDemandeMapper();
-		List<AjoutDemandeDto> list = new ArrayList<AjoutDemandeDto>();
-		List<Credit> credits= creditRepository.findByStatus(true);
-		List<PieceJointe> comptes =new ArrayList<>();
-
-		for(Credit credit : credits) {
-		Compte compte = compteRepository.findById(credit.getCompteId()).orElse(null);
-		Client client = clientRepository.findById(compte.getClientId()).orElse(null);
-		List<Garantie> garanties = garantieRepository.findByCreditId(credit.getId());
-		List<PieceJointe> pieceJointes =pieceJointeRepository.findByCreditId(credit.getId());
-
-		 modelMapper.map(credit, CreditDto.class);
-		// modelMapper.map(compte, CompteDto.class);
-		 /*modelMapper.map(client, ClientDto.class);
-		for(Garantie garantie : garanties) {
-
-		 modelMapper.map(garantie, GarantieDto.class);
-		 GarantieDto garantieDto = mapper.convertGarantieToDto(garantie);
-
-		 }
-		for(PieceJointe pieceJointe : pieceJointes) {
-
-		 modelMapper.map(pieceJointe, PieceJointeDto.class);
-		}
-		 CreditDto creditDto = mapper.convertCreditToDto(credit);
-		 CompteDto compteDto = mapper.convertCompteToDto(compte);
-		 
-		 demande.setCreditDto(creditDto);
-		 demande.setCompteDto(compteDto);*/
-		        // Ensure that this.modelMapper is not null
-		        if (this.modelMapper == null) {
-		            // Handle the situation, throw an exception, or log an error
-		            throw new IllegalStateException("ModelMapper is not initialized");
-		        }else {
-		 
-		  dto = modelMapper.map(credit, CreditDto.class);
-
-		// ClientDto clientDto = mapper.convertClientToDto(client);
-		// PieceJointeDto pieceJointe = mapper.convertPieceJointeToDto(pieceJointe);
-
-		/*modelMapper.map(demande.setClientDto(client));
-		Credit credit = modelMapper.map(ajoutDemandeDto.getCreditDto(), Credit.class);
-		Compte compte = modelMapper.map(ajoutDemandeDto.getCompteDto(), Compte.class);
-		Garantie garantie = modelMapper.map(ajoutDemandeDto.getGarantieDto(), Garantie.class);
-		PieceJointe pieceJointe = modelMapper.map(ajoutDemandeDto.getPieceJointeDto(),PieceJointe.class);*/
-		//for(Garantie garantie : garanties) {
-
-		//list.add(demande);
-		}
-				return dto;
-
+		List<GetDemandeDto> list = new ArrayList<GetDemandeDto>();
 		
-	}
+		List<Credit> credits= creditRepository.findByStatus(true);
+		for(Credit credit : credits) {
+			
+			CreditDto creditDto = modelMapper.map(credit, CreditDto.class );
+			demande.setCreditDto(creditDto);
+			
+			Compte compte = compteRepository.findById(credit.getCompteId()).orElse(null);
+			CompteDto compteDto = modelMapper.map(compte, CompteDto.class );
+			demande.setCompteDto(compteDto);
+			
+			Client client = clientRepository.findById(compte.getClientId()).orElse(null);
+			ClientDto clientDto = modelMapper.map(client, ClientDto.class );
+			demande.setClientDto(clientDto);
+			
+			/*List<Garantie> garanties = garantieRepository.findByCreditId(credit.getId());
+			GarantieDto garantieDto = modelMapper.map(garanties, GarantieDto.class );
+			
+			List<PieceJointe> pieceJointes =pieceJointeRepository.findByCreditId(credit.getId());
+			PieceJointeDto pieceJointeDto = modelMapper.map(pieceJointes, PieceJointeDto.class );*/
+
+			list.add(demande);
+		}
+		
+		return list;
+		
 	}
 }
 	

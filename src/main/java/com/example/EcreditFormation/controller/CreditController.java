@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EcreditFormation.dtos.AjoutDemandeDto;
 import com.example.EcreditFormation.dtos.CreditDto;
+import com.example.EcreditFormation.dtos.GetDemandeDto;
 import com.example.EcreditFormation.models.Credit;
 import com.example.EcreditFormation.serviceInterface.ICreditService;
 
@@ -76,7 +77,7 @@ public class CreditController {
     
     @GetMapping("/getCredits")
     @ResponseBody
-    public CreditDto findAllCreditsByDto() {
+    public List<GetDemandeDto> findAllCreditsByDto() {
         return creditService.getDemandeCredit();
     }
 	

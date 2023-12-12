@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.example.EcreditFormation.dtos.AjoutDemandeDto;
 import com.example.EcreditFormation.dtos.CreditDto;
+import com.example.EcreditFormation.dtos.GetDemandeDto;
 import com.example.EcreditFormation.models.Credit;
 
 
@@ -23,5 +24,5 @@ public interface ICreditService {
 	
 	Optional<Credit> getCreditById(Long CreditID);
 	
-	CreditDto  getDemandeCredit();
+	List<GetDemandeDto> getDemandeCredit();
 }

@@ -69,4 +69,14 @@ public class ClientController {
         return client.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    
+    
+    @ApiOperation(value = "retrieveClientByCin")
+    @GetMapping("retrieveClientByCin/{cin}")
+    public ResponseEntity<Client> getClientByCin(@PathVariable Long cin) {
+        Optional<Client> client = clientService.getClientByCin(cin);
+
+        return client.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EcreditFormation.models.Client;
 import com.example.EcreditFormation.models.Compte;
+import com.example.EcreditFormation.serviceInterface.IClientService;
 import com.example.EcreditFormation.serviceInterface.ICompteService;
 
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +30,8 @@ public class CompteController {
 	@Autowired
 	ICompteService compteService;
 	
+	@Autowired
+	IClientService clientService;
 	
     @PostMapping("/postCompte")
 	@ResponseBody
@@ -66,4 +69,13 @@ public class CompteController {
                 .orElse(ResponseEntity.notFound().build());
     }
 	
+    
+    @ApiOperation(value = "CompteByUserCin")
+    @GetMapping("CompteByUserCin/{cin}")
+    public List<Compte> getCompteByUserCin(@PathVariable Long cin) {
+        List<Compte> compte = clientService.getCompteByClientCin(cin);
+return compte;
+       /* return compte.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());*/
+    }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.EcreditFormation.models.Client;
+import com.example.EcreditFormation.models.Compte;
 
 public interface IClientService {
 
@@ -18,4 +19,8 @@ public interface IClientService {
 	//Client retrieveClient(Long ClientID);
 	
 	Optional<Client> getClientById(Long id);
+	
+	Optional<Client> getClientByCin(Long cin);
+	
+	List<Compte> getCompteByClientCin(Long cin) ;
 }
