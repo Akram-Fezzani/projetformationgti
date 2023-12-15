@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompteDto {
+	private long id;
 
 	private long numcompte;
 	private Date dateOuverture;

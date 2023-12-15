@@ -20,9 +20,8 @@ public interface ICreditService {
 
 	void deleteCreditById(Long CreditID);
 	
-	Credit addDemandeCredit(AjoutDemandeDto ajoutDemandeDto);
 	
 	Optional<Credit> getCreditById(Long CreditID);
 	
-	List<GetDemandeDto> getDemandeCredit();
+	
 }

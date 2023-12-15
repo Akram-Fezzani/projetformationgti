@@ -38,23 +38,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CreditService implements ICreditService {
 
 	
-	
-	
 	@Autowired
-	CreditRepository creditRepository;	
-    private final ModelMapper modelMapper = new ModelMapper();
-    
-	@Autowired
-	ClientRepository clientRepository;
-	
-	@Autowired
-	CompteRepository compteRepository;
-	
-	@Autowired
-	GarantieRepository garantieRepository;	
-	
-	@Autowired
-	PieceJointeRepository pieceJointeRepository;
+	CreditRepository creditRepository;
 	
 	//afficher la liste des Credits
 	@Override
@@ -74,7 +59,7 @@ public class CreditService implements ICreditService {
 	public Credit updateCredit(Credit credit, Long creditID) {
 		
 		credit.setId(creditID);
-			return creditRepository.save(credit);
+		return creditRepository.save(credit);
 		
 	}
 	
@@ -91,69 +76,12 @@ public class CreditService implements ICreditService {
 	        return creditRepository.findById(creditID);
 	    }
 	
-	@Transactional
-	@Override
-	public Credit addDemandeCredit(AjoutDemandeDto ajoutDemandeDto) {
-		Client client = modelMapper.map(ajoutDemandeDto.getClientDto(), Client.class);
-		Credit credit = modelMapper.map(ajoutDemandeDto.getCreditDto(), Credit.class);
-		Compte compte = modelMapper.map(ajoutDemandeDto.getCompteDto(), Compte.class);
-		Garantie garantie = modelMapper.map(ajoutDemandeDto.getGarantieDto(), Garantie.class);
-		PieceJointe pieceJointe = modelMapper.map(ajoutDemandeDto.getPieceJointeDto(),PieceJointe.class);
-		CreditDto dto =new CreditDto();
-		//setting the client id in the compte
-		compte.setClientId(client.getId());
-		
-		//setting the compte id to the credit
-		credit.setCompteId(compte.getId());
-		
-		//setting the credit to the piece jointe 
-		pieceJointe.setCreditId(credit.getId());
-		
-		//setting the credit to the garantie
-		garantie.setCreditId(credit.getId());
-		
-		clientRepository.save(client);
-		creditRepository.save(credit);
-		compteRepository.save(compte);
-		garantieRepository.save(garantie);
-		pieceJointeRepository.save(pieceJointe);
-	return creditRepository.save(credit);
-	}
-	
-	@Transactional
-	@Override
-	public List<GetDemandeDto>  getDemandeCredit() {
-		
-		GetDemandeDto demande =new GetDemandeDto();
-		AjoutDemandeMapper mapper = new AjoutDemandeMapper();
-		List<GetDemandeDto> list = new ArrayList<GetDemandeDto>();
-		
-		List<Credit> credits= creditRepository.findByStatus(true);
-		for(Credit credit : credits) {
-			
-			CreditDto creditDto = modelMapper.map(credit, CreditDto.class );
-			demande.setCreditDto(creditDto);
-			
-			Compte compte = compteRepository.findById(credit.getCompteId()).orElse(null);
-			CompteDto compteDto = modelMapper.map(compte, CompteDto.class );
-			demande.setCompteDto(compteDto);
-			
-			Client client = clientRepository.findById(compte.getClientId()).orElse(null);
-			ClientDto clientDto = modelMapper.map(client, ClientDto.class );
-			demande.setClientDto(clientDto);
-			
-			/*List<Garantie> garanties = garantieRepository.findByCreditId(credit.getId());
-			GarantieDto garantieDto = modelMapper.map(garanties, GarantieDto.class );
-			
-			List<PieceJointe> pieceJointes =pieceJointeRepository.findByCreditId(credit.getId());
-			PieceJointeDto pieceJointeDto = modelMapper.map(pieceJointes, PieceJointeDto.class );*/
 
-			list.add(demande);
-		}
-		
-		return list;
-		
-	}
+	
+	
+	
+	
+	
 }
 	
 

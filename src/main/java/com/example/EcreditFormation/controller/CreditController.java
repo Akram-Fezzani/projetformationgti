@@ -80,5 +80,18 @@ public class CreditController {
     public List<GetDemandeDto> findAllCreditsByDto() {
         return creditService.getDemandeCredit();
     }
+    
+	@PostMapping("updatedto/{creditID}")
+	@ResponseBody
+	Credit updateCreditDto(@RequestBody AjoutDemandeDto dto,@PathVariable Long creditID){
+		return creditService.updateDemandeCredit(dto, creditID);
+	}
 	
+
+    @ApiOperation(value = "getDemandeCreditByCreditId")
+    @GetMapping("getDemandeCreditByCreditId/{id}")
+    public GetDemandeDto getDemandeCreditByCreditId(@PathVariable Long id) {
+    	return creditService.getDemandeCreditByCreditId(id);
+         
+    }
 }

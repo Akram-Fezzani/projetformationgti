@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreditDto {
-
+	private Long id;
 	private float montant;
 	private  int nbrEcheance;
 	private Long typeCreditId;
