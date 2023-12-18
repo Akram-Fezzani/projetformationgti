@@ -18,14 +18,12 @@ public class UniteService  implements IUniteService{
 	@Autowired
 	UniteRepository uniteRepository;
 	
-	//afficher la liste des TypeCredits
 	@Override
 	public List<Unite> findAll() {
 		return  uniteRepository.findAll();
 	}
 	
 	
-	//ajouter un TypeCredit
 	@Override
 	public Unite addUnite(Unite unite) {
 		
@@ -40,7 +38,6 @@ public class UniteService  implements IUniteService{
 		
 	}
 	
-	//effacer un TypeCredit
 	@Override
 	public void deleteUniteById(Long uniteID) {
 		uniteRepository.deleteById(uniteID);

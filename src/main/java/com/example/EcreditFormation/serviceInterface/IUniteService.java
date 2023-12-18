@@ -3,7 +3,6 @@ package com.example.EcreditFormation.serviceInterface;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.EcreditFormation.models.TypeCredit;
 import com.example.EcreditFormation.models.Unite;
 
 public interface IUniteService {

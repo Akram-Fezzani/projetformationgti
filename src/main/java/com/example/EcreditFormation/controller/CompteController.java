@@ -2,7 +2,6 @@ package com.example.EcreditFormation.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.EcreditFormation.models.Client;
 import com.example.EcreditFormation.models.Compte;
 import com.example.EcreditFormation.serviceInterface.IClientService;
 import com.example.EcreditFormation.serviceInterface.ICompteService;
-
 import io.swagger.annotations.ApiOperation;
 
 
@@ -74,8 +70,7 @@ public class CompteController {
     @GetMapping("CompteByUserCin/{cin}")
     public List<Compte> getCompteByUserCin(@PathVariable Long cin) {
         List<Compte> compte = clientService.getCompteByClientCin(cin);
-return compte;
-       /* return compte.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());*/
+        return compte;
+     
     }
 }

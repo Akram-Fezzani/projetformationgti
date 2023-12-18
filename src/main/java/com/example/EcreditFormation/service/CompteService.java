@@ -2,18 +2,13 @@ package com.example.EcreditFormation.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.EcreditFormation.models.Compte;
 import com.example.EcreditFormation.repository.CompteRepository;
 import com.example.EcreditFormation.serviceInterface.ICompteService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 public class CompteService implements ICompteService {
 
 	
@@ -22,14 +17,12 @@ public class CompteService implements ICompteService {
 	
 	
 	
-	//afficher la liste des Comptes
 	@Override
 	public List<Compte> findAll() {
 		return  compteRepository.findAll();
 	}
 	
 	
-	//ajouter un Compte
 	@Override
 	public Compte addCompte(Compte compte) {
 		
@@ -44,7 +37,6 @@ public class CompteService implements ICompteService {
 		
 	}
 	
-	//effacer un Compte
 	@Override
 	public void deleteCompteById(Long compteID) {
 		compteRepository.deleteById(compteID);

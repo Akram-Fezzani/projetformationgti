@@ -2,6 +2,7 @@ package com.example.EcreditFormation.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,55 +13,56 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.EcreditFormation.models.Credit;
-import com.example.EcreditFormation.serviceInterface.ICreditService;
+
+import com.example.EcreditFormation.models.Devise;
+import com.example.EcreditFormation.serviceInterface.IDeviseService;
+
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/Credit")
-public class CreditController {
+@RequestMapping("/Devise")
+public class DeviseController {
 
+	
 	
 
 	@Autowired
-	ICreditService creditService;
+	IDeviseService deviseService;
 	
-	@PostMapping("/postCredit")
+	@PostMapping("/postDevise")
 	@ResponseBody
-	public Credit addCredit(@RequestBody Credit credit) {
-	        return creditService.addCredit(credit);
+	public Devise addDevise(@RequestBody Devise devise) {
+	        return deviseService.addDevise(devise);
 	    }
     
-	@PostMapping("updateCredit/{creditID}")
+	@PostMapping("updateDevise/{deviseID}")
 	@ResponseBody
-	Credit updateCredit(@RequestBody Credit credit,@PathVariable Long creditID){
-		return creditService.updateCredit(credit, creditID);
+	Devise updateDevise(@RequestBody Devise devise,@PathVariable Long deviseID){
+		return deviseService.updateDevise(devise, deviseID);
 	}
     
-    @GetMapping("/getCredit")
+    @GetMapping("/getDevise")
     @ResponseBody
-    public List<Credit> findAllCredits() {
-        return creditService.findAll();
+    public List<Devise> findAllDevises() {
+        return deviseService.findAll();
     }
     
 
-    @DeleteMapping("/delete/{creditID}")
-    public void deleteCreditById(@PathVariable Long creditID) {
-    	creditService.deleteCreditById(creditID);
+    @DeleteMapping("/delete/{deviseID}")
+    public void deleteDeviseById(@PathVariable Long deviseID) {
+    	deviseService.deleteDeviseById(deviseID);
     
     }
     
 
     
-    @ApiOperation(value = "retrieveCredit")
+    @ApiOperation(value = "retrieveDevise")
     @GetMapping("/{id}")
-    public ResponseEntity<Credit> getClientById(@PathVariable Long id) {
-        Optional<Credit> compte = creditService.getCreditById(id);
+    public ResponseEntity<Devise> getDeviseById(@PathVariable Long id) {
+        Optional<Devise> compte = deviseService.getDeviseById(id);
 
         return compte.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
     
-    
-
 }

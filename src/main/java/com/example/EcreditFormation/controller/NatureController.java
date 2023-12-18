@@ -2,6 +2,7 @@ package com.example.EcreditFormation.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,51 +13,55 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.example.EcreditFormation.models.Garantie;
+import com.example.EcreditFormation.models.Nature;
 import com.example.EcreditFormation.serviceInterface.IGarantieService;
+import com.example.EcreditFormation.serviceInterface.INatureService;
+
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/Garantie")
-public class GarantieController {
+@RequestMapping("/Nature")
+public class NatureController {
 
 	
 
 	@Autowired
-	IGarantieService garantieService;
+	INatureService natureService;
 	
 	
-    @PostMapping("/postGarantie")
+    @PostMapping("/postNature")
 	@ResponseBody
-	public Garantie addGarantie(@RequestBody Garantie credit) {
-	        return garantieService.addGarantie(credit);
+	public Nature addNature(@RequestBody Nature nature) {
+	        return natureService.addNature(nature);
 	    }
     
-	@PostMapping("updateGarantie/{garantieID}")
+	@PostMapping("updateNature/{natureID}")
 	@ResponseBody
-	Garantie updateGarantie(@RequestBody Garantie garantie,@PathVariable Long garantieID){
-		return garantieService.updateGarantie(garantie, garantieID);
+	Nature updateGarantie(@RequestBody Nature nature,@PathVariable Long natureID){
+		return natureService.updateNature(nature, natureID);
 	}
     
-    @GetMapping("/getGaranties")
+    @GetMapping("/getNatures")
     @ResponseBody
-    public List<Garantie> findAllGaranties() {
-        return garantieService.findAll();
+    public List<Nature> findAllNatures() {
+        return natureService.findAll();
     }
     
 
-    @DeleteMapping("/delete/{garantieID}")
-    public void deleteGarantieById(@PathVariable Long garantieID) {
-    	garantieService.deleteGarantieById(garantieID);
+    @DeleteMapping("/delete/{natureID}")
+    public void deleteNatureById(@PathVariable Long natureID) {
+    	natureService.deleteNatureById(natureID);
     
     }
     
 
     
-    @ApiOperation(value = "retrieveGarantie")
+    @ApiOperation(value = "retrieveNature")
     @GetMapping("/{id}")
-    public ResponseEntity<Garantie> getGarantieById(@PathVariable Long id) {
-        Optional<Garantie> compte = garantieService.getGarantieById(id);
+    public ResponseEntity<Nature> getNatureById(@PathVariable Long id) {
+        Optional<Nature> compte = natureService.getNatureById(id);
 
         return compte.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

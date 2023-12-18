@@ -1,6 +1,5 @@
 package com.example.EcreditFormation.models;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,5 +14,6 @@ public class Devise {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private char devise;
+	private String devise;
 }
+	
