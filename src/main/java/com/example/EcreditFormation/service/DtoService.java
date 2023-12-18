@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.EcreditFormation.dtos.AjoutDemandeDto;
 import com.example.EcreditFormation.dtos.ClientDto;
@@ -26,6 +27,7 @@ import com.example.EcreditFormation.repository.GarantieRepository;
 import com.example.EcreditFormation.repository.PieceJointeRepository;
 import com.example.EcreditFormation.serviceInterface.IDtoService;
 
+@Service
 public class DtoService implements IDtoService{
 
 

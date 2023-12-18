@@ -32,11 +32,6 @@ public class CreditController {
 	ICreditService creditService;
 	
 	
-   /* @PostMapping("/postCredit")
-	@ResponseBody
-	public Credit addCredit(@RequestBody Credit credit) {
-	        return creditService.addCredit(credit);
-	    }*/
     
 	@PostMapping("updateCredit/{creditID}")
 	@ResponseBody
@@ -69,29 +64,5 @@ public class CreditController {
     }
     
     
-    @PostMapping("/ajouter")
-   	@ResponseBody
-   	public Credit ajouterDemandeParDto(@RequestBody AjoutDemandeDto credit) {
-   	        return creditService.addDemandeCredit(credit);
-   	    }
-    
-    @GetMapping("/getCredits")
-    @ResponseBody
-    public List<GetDemandeDto> findAllCreditsByDto() {
-        return creditService.getDemandeCredit();
-    }
-    
-	@PostMapping("updatedto/{creditID}")
-	@ResponseBody
-	Credit updateCreditDto(@RequestBody AjoutDemandeDto dto,@PathVariable Long creditID){
-		return creditService.updateDemandeCredit(dto, creditID);
-	}
-	
 
-    @ApiOperation(value = "getDemandeCreditByCreditId")
-    @GetMapping("getDemandeCreditByCreditId/{id}")
-    public GetDemandeDto getDemandeCreditByCreditId(@PathVariable Long id) {
-    	return creditService.getDemandeCreditByCreditId(id);
-         
-    }
 }

@@ -14,6 +14,6 @@ public class TypeCredit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String typeCredt;
+	private String typeCredit;
 
 }

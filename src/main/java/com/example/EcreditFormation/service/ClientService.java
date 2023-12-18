@@ -12,20 +12,16 @@ import com.example.EcreditFormation.repository.ClientRepository;
 import com.example.EcreditFormation.repository.CompteRepository;
 import com.example.EcreditFormation.serviceInterface.IClientService;
 
-import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class ClientService implements IClientService {
-
-	
 	
 	@Autowired
 	ClientRepository clientRepository;
+	
 	@Autowired
 	CompteRepository compteRepository;
-	
-	
+
 	//afficher la liste des users
 	@Override
 	public List<Client> findAll() {
@@ -74,4 +70,6 @@ public class ClientService implements IClientService {
 		return c;
 	}
 
+
+	
 }
