@@ -24,17 +24,19 @@ public class PieceJointeService implements IPieceJointeService {
 	PieceJointeRepository pieceJointeRepository;	
 	
 	
-	//afficher la liste des PieceJointe
 	@Override
 	public List<PieceJointe> findAll() {
 		return  pieceJointeRepository.findAll();
 	}
 	
 	
-	//ajouter une pieceJointe
 	@Override
 	public PieceJointe addPieceJointe(PieceJointe pieceJointe) {
-		
+		if(pieceJointe.isStatus()) {
+			pieceJointe.setDisplay("Oui");
+		}
+		else			
+			pieceJointe.setDisplay("Non");	 
 	return pieceJointeRepository.save(pieceJointe);
 	}
 	
@@ -46,7 +48,6 @@ public class PieceJointeService implements IPieceJointeService {
 		
 	}
 	
-	//effacer une pieceJointe
 	@Override
 	public void deletePieceJointeById(Long pieceJointeID) {
 		pieceJointeRepository.deleteById(pieceJointeID);

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.EcreditFormation.dtos.GetDemandeDto;
+import com.example.EcreditFormation.dtos.GetGarantieDto;
 import com.example.EcreditFormation.models.Garantie;
 import com.example.EcreditFormation.serviceInterface.IGarantieService;
 import io.swagger.annotations.ApiOperation;
@@ -60,5 +63,12 @@ public class GarantieController {
 
         return compte.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+    
+    
+    @GetMapping("/getgarantiesByCreditId/{creditID}")
+    @ResponseBody
+    public List<GetGarantieDto> findGarantiesByCreditId(@PathVariable Long creditID) {
+        return garantieService.getGarantieDtoById(creditID);
     }
 }

@@ -25,5 +25,6 @@ public class PieceJointe {
 	private float fileSize;
 	private String filePath;
 	private Long creditId;
+	private String display;
 
 }

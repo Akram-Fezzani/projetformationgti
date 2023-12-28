@@ -3,6 +3,7 @@ package com.example.EcreditFormation.serviceInterface;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.EcreditFormation.dtos.GetGarantieDto;
 import com.example.EcreditFormation.models.Garantie;
 
 public interface IGarantieService {
@@ -17,4 +18,6 @@ public interface IGarantieService {
 	void deleteGarantieById(Long GarantieID);
 
 	Optional<Garantie> getGarantieById(Long GarantieID);
+	
+	List<GetGarantieDto> getGarantieDtoById(Long creditID);
 }

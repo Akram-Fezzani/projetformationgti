@@ -16,6 +16,7 @@ public class Garantie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
 	private Long nature;
 	private Long type;
 	private Long devise;

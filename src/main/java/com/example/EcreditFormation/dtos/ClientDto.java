@@ -15,7 +15,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ClientDto {
 	private long id;
-
 	private long cin;
 	private String nom;
 	private String prenom;

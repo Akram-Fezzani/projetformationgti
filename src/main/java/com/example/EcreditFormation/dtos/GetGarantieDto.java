@@ -9,9 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GarantieDto {
-	private Long natureId;
-	private Long typeGarantieId;
-	private Long deviseGarantieId;
+public class GetGarantieDto {
+	private Long idGarantie;
+	private String nature;
+	private String typeGarantie;
+	private String deviseGarantie;
 	private float valeur;
 }

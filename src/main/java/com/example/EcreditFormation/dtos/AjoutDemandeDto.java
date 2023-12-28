@@ -14,6 +14,6 @@ public class AjoutDemandeDto {
 	private ClientDto ClientDto;
 	private CompteDto CompteDto;
 	private CreditDto CreditDto;
-	private GarantieDto GarantieDto;
-	private PieceJointeDto PieceJointeDto;
+	//private GarantieDto GarantieDto;
+	//private PieceJointeDto PieceJointeDto;
 	}

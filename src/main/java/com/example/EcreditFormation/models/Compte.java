@@ -20,7 +20,6 @@ public class Compte {
 	private Date dateOuverture;
 	private Long devise;
 	private Long clientId;
-	//@ElementCollection
-	//private List<Long>creditIds;
+
 
 }

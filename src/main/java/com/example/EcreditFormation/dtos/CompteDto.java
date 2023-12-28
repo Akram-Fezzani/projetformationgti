@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CompteDto {
 	private long id;
-
+	private long clientId;
 	private long numcompte;
 	private Date dateOuverture;
 	private Long deviseId;

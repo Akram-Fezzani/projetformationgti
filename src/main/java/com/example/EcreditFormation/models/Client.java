@@ -20,6 +20,5 @@ public class Client {
 	private String prenom;
 	private Date dateNs;
 	private Long situationFamiliale;
-	//@ElementCollection
-	//private List<Long>compteIds;
+
 }
