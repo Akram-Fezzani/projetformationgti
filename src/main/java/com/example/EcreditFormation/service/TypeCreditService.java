@@ -3,6 +3,8 @@ package com.example.EcreditFormation.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,39 +21,59 @@ public class TypeCreditService implements ITypeCreditService {
 	@Autowired
 	TypeCreditRepository typeCreditRepository;
 	
-	//afficher la liste des TypeCredits
 	@Override
 	public List<TypeCredit> findAll() {
-		return  typeCreditRepository.findAll();
+	    try {
+			return  typeCreditRepository.findAll();
+			}
+	    catch (Exception e) {
+			throw new RuntimeException("error getting types credits", e);
+			}
 	}
 	
 	
-	//ajouter un TypeCredit
+	@Transactional
 	@Override
 	public TypeCredit addTypeCredit(TypeCredit typeCredit) {
-		
-	return typeCreditRepository.save(typeCredit);
+	    try {
+	    	return typeCreditRepository.save(typeCredit);
+			}
+	    catch (Exception e) {
+			throw new RuntimeException("error getting types credits", e);
+			}
 	}
 	
+	@Transactional
 	@Override
 	public TypeCredit updateTypeCredit(TypeCredit typeCredit, Long typeCreditID) {
-		
-		typeCredit.setId(typeCreditID);
-		return typeCreditRepository.save(typeCredit);
-		
+	    try {
+	    	typeCredit.setId(typeCreditID);
+			return typeCreditRepository.save(typeCredit);			}
+	    catch (Exception e) {
+			throw new RuntimeException("error updating this type credit", e);
+			}
 	}
 	
-	//effacer un TypeCredit
+	@Transactional
 	@Override
 	public void deleteTypeCreditById(Long typeCreditID) {
-		typeCreditRepository.deleteById(typeCreditID);
-		
+	    try {
+			typeCreditRepository.deleteById(typeCreditID);
+			}
+	    catch (Exception e) {
+			throw new RuntimeException("error deleting this type credit", e);
+			}
 	}
 	
 	
 	@Override
 	   public Optional<TypeCredit> getTypeCreditById(Long typeCreditID) {
-	        return typeCreditRepository.findById(typeCreditID);
+	        try {
+		        return typeCreditRepository.findById(typeCreditID);
+				}
+		    catch (Exception e) {
+				throw new RuntimeException("error geting type credit by id ", e);
+				}
 	    }
 	
 

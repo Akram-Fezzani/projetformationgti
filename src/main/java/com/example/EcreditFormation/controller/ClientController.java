@@ -43,7 +43,7 @@ public class ClientController {
 	@PostMapping("updateClient/{clientID}")
 	@ResponseBody
 	Client updateClient(@RequestBody Client client,@PathVariable Long clientID){
-		return clientService.updateClient(client, clientID);
+		return clientService.updateClient(client, clientID) ;
 	}
     
     @GetMapping("/getClient")

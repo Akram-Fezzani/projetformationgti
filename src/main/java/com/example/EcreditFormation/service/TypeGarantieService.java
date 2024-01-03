@@ -3,6 +3,8 @@ package com.example.EcreditFormation.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,34 +22,57 @@ public class TypeGarantieService implements ITypeGarantieService {
 	
 	@Override
 	public List<TypeGarantie> findAll() {
-		return  typeGarantieRepository.findAll();
+		   try {
+				return  typeGarantieRepository.findAll();
+				}
+		    catch (Exception e) {
+				throw new RuntimeException("error getting types garanties", e);
+				}
 	}
 	
 	
+	@Transactional
 	@Override
 	public TypeGarantie addTypeGarantie(TypeGarantie typeGarantie) {
-		
-	return typeGarantieRepository.save(typeGarantie);
+		   try {
+				return typeGarantieRepository.save(typeGarantie);
+				}
+		    catch (Exception e) {
+				throw new RuntimeException("error posting this type garantie", e);
+				}
 	}
-	
+
+	@Transactional
 	@Override
 	public TypeGarantie updateTypeGarantie(TypeGarantie typeGarantie, Long typeGarantieID) {
-		
-		typeGarantie.setId(typeGarantieID);
-		return typeGarantieRepository.save(typeGarantie);
-		
+		  try {
+			  typeGarantie.setId(typeGarantieID);
+				return typeGarantieRepository.save(typeGarantie);				}
+		    catch (Exception e) {
+				throw new RuntimeException("error updating this type garantie", e);
+				}
 	}
 	
+	@Transactional
 	@Override
 	public void deleteTypeGarantieById(Long typeGarantieID) {
-		typeGarantieRepository.deleteById(typeGarantieID);
-		
+		  try {
+				typeGarantieRepository.deleteById(typeGarantieID);
+			}
+		    catch (Exception e) {
+				throw new RuntimeException("error updating this type garantie", e);
+				}
 	}
 	
 	
 	@Override
 	   public Optional<TypeGarantie> getTypeGarantieById(Long typeGarantieID) {
-	        return typeGarantieRepository.findById(typeGarantieID);
+			  try {
+			        return typeGarantieRepository.findById(typeGarantieID);
+				}
+			    catch (Exception e) {
+					throw new RuntimeException("error getting type garantie with this id ", e);
+					}
 	    }
 	
 

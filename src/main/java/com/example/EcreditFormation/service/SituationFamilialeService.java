@@ -3,9 +3,12 @@ package com.example.EcreditFormation.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.EcreditFormation.exception.ResourceNotFoundException;
 import com.example.EcreditFormation.models.Client;
 import com.example.EcreditFormation.models.SituationFamiliale;
 import com.example.EcreditFormation.repository.ClientRepository;
@@ -21,45 +24,71 @@ public class SituationFamilialeService implements ISituationFamilialeSerivce{
 	@Autowired
 	SituationFamilialeRepository situationFamilialeRepository;
 	
-	//afficher la liste des SituationFamiliale
 	@Override
 	public List<SituationFamiliale> findAll() {
-		return  situationFamilialeRepository.findAll();
+	    try {
+			return  situationFamilialeRepository.findAll();
+			}
+	    catch (Exception e) {
+			throw new ResourceNotFoundException(" piece Jointe not found with id = " );
+			}
 	}
 	
 	
-	//ajouter un SituationFamiliale
+	@Transactional
 	@Override
 	public SituationFamiliale addSituationFamiliale(SituationFamiliale situationFamiliale) {
-		
-	return situationFamilialeRepository.save(situationFamiliale);
+    try {
+    	return situationFamilialeRepository.save(situationFamiliale);
+		}
+    catch (Exception e) {
+		throw new RuntimeException("error posting this Situation Familiale", e);
+		}
 	}
 	
+	@Transactional
 	@Override
 	public SituationFamiliale updateSituationFamiliale(SituationFamiliale situationFamiliale, Long situationFamilialeID) {
-		
-		situationFamiliale.setId(situationFamilialeID);
-		return situationFamilialeRepository.save(situationFamiliale);
-		
+        try {
+        	situationFamiliale.setId(situationFamilialeID);
+    		return situationFamilialeRepository.save(situationFamiliale);
+    		}
+	    catch (Exception e) {
+			throw new RuntimeException("error updating Situation Familiale", e);
+			}
 	}
 	
-	//effacer un SituationFamiliale
+	@Transactional
 	@Override
 	public void deleteSituationFamilialeById(Long typeCreditID) {
-		situationFamilialeRepository.deleteById(typeCreditID);
-		
+        try {
+    		situationFamilialeRepository.deleteById(typeCreditID);
+            }
+	    catch (Exception e) {
+			throw new RuntimeException("error deleting Situation Familiale with this id", e);
+			}
 	}
 	
 	
 	@Override
 	   public Optional<SituationFamiliale> getSituationFamilialeById(Long situationFamilialeID) {
-	        return situationFamilialeRepository.findById(situationFamilialeID);
+	        try {
+		        return situationFamilialeRepository.findById(situationFamilialeID);
+	            }
+		    catch (Exception e) {
+				throw new RuntimeException("error getting Situation Familiale with this id", e);
+				}
 	    }
 	
 	@Override
 	public Optional<SituationFamiliale> getSituationFamilialeByCin(Long cin){
-         Client client = clientRepository.findByCin(cin).orElse(null);
-         return(situationFamilialeRepository.findById(client.getSituationFamiliale()));
-         
+        try {
+            Client client = clientRepository.findByCin(cin).orElse(null);
+            return(situationFamilialeRepository.findById(client.getSituationFamiliale()));
+            		}
+	    catch (Exception e) {
+			throw new RuntimeException("error getting Situation Familiale with this cin", e);
+		}
+   
     }
 }

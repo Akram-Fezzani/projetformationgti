@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.EcreditFormation.models.Garantie;
 import com.example.EcreditFormation.models.Nature;
-import com.example.EcreditFormation.serviceInterface.IGarantieService;
 import com.example.EcreditFormation.serviceInterface.INatureService;
-
 import io.swagger.annotations.ApiOperation;
 
 @RestController
